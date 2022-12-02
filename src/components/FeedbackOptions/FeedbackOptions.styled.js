@@ -7,6 +7,7 @@ export const Button = styled.button`
   padding: ${p => p.theme.space[3]}px;
   min-width: ${p => p.theme.sizes.buttonWidth};
   border: none;
+  outline: none;
   border-radius: ${p => p.theme.radii.primary};
   color: ${p => p.theme.colors.textPrimary};
   background-color: ${p => p.theme.colors.bgButton};
