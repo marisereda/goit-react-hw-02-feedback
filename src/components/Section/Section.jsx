@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import { Box } from 'components/Box';
 
-export const Section = ({ title, bgColor, children }) => (
+export const Section = ({ title, bgColor = 'white', children }) => (
   <Box
     display="flex"
     flexWrap="wrap"
@@ -17,3 +18,12 @@ export const Section = ({ title, bgColor, children }) => (
     {children}
   </Box>
 );
+
+Section.propTypes = {
+  title: PropTypes.string.isRequired,
+  bgColor: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
+};

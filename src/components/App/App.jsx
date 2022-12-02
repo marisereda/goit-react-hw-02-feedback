@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
+import {
+  BsFillEmojiFrownFill,
+  BsFillEmojiNeutralFill,
+  BsFillEmojiSmileFill,
+} from 'react-icons/bs';
 import { GlobalStyle } from 'components/GlobalStyle';
 import { Box } from 'components/Box';
 import { Section } from 'components/Section';
 import { FeedbackOptions } from 'components/FeedbackOptions';
 import { Statistics } from 'components/Statistics';
+import { Notification } from 'components/Notification';
 import { theme } from 'constants';
+
+const OPTIONS = {
+  bad: BsFillEmojiFrownFill,
+  neutral: BsFillEmojiNeutralFill,
+  good: BsFillEmojiSmileFill,
+};
 
 export class App extends Component {
   state = {
@@ -28,6 +40,7 @@ export class App extends Component {
   };
 
   render() {
+    const { bad, neutral, good } = this.state;
     return (
       <Box
         display="flex"
@@ -39,8 +52,9 @@ export class App extends Component {
       >
         <Section title="Please leave feedback" bgColor={theme.colors.bgLight}>
           <FeedbackOptions
+            options={OPTIONS}
             onLeaveFeedback={this.onLeaveFeedback}
-          ></FeedbackOptions>
+          />
         </Section>
 
         <Section title="Statistics" bgColor={theme.colors.bgPrimary}>
@@ -48,16 +62,14 @@ export class App extends Component {
           this.state.neutral > 0 ||
           this.state.good > 0 ? (
             <Statistics
-              bad={this.state.bad}
-              neutral={this.state.neutral}
-              good={this.state.good}
-              countTotalFeedback={this.countTotalFeedback}
-              countPositiveFeedbackPercentage={
-                this.countPositiveFeedbackPercentage
-              }
+              bad={bad}
+              neutral={neutral}
+              good={good}
+              total={this.countTotalFeedback()}
+              positivePercentage={this.countPositiveFeedbackPercentage()}
             ></Statistics>
           ) : (
-            <p>There is no any feedback</p>
+            <Notification message="There is no any feedback" />
           )}
         </Section>
 

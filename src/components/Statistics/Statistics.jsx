@@ -1,11 +1,17 @@
+import PropTypes from 'prop-types';
+
+import {
+  BsFillEmojiFrownFill,
+  BsFillEmojiNeutralFill,
+  BsFillEmojiSmileFill,
+} from 'react-icons/bs';
 import { Box } from 'components/Box';
-import { CiFaceFrown, CiFaceMeh, CiFaceSmile } from 'react-icons/ci';
 import { theme } from 'constants';
 import { Number, NumberTotal, Text } from './Statistics.styled';
 
 export const Statistics = ({
-  countTotalFeedback,
-  countPositiveFeedbackPercentage,
+  total,
+  positivePercentage,
   bad,
   neutral,
   good,
@@ -27,21 +33,21 @@ export const Statistics = ({
         gridGap={5}
       >
         <p>
-          <CiFaceFrown
+          <BsFillEmojiFrownFill
             size={theme.sizes.icon}
             style={{ fill: theme.colors.iconBad }}
           />
           <Number>{bad}</Number>
         </p>
         <p>
-          <CiFaceMeh
+          <BsFillEmojiNeutralFill
             size={theme.sizes.icon}
             style={{ fill: theme.colors.iconNeutral }}
           />
           <Number>{neutral}</Number>
         </p>
         <p>
-          <CiFaceSmile
+          <BsFillEmojiSmileFill
             size={theme.sizes.icon}
             style={{ fill: theme.colors.iconGood }}
           />
@@ -50,13 +56,21 @@ export const Statistics = ({
       </Box>
       <Box>
         <Text>
-          Total:<NumberTotal>{countTotalFeedback()}</NumberTotal>
+          Total:<NumberTotal>{total}</NumberTotal>
         </Text>
         <Text>
           Positive feedback:
-          <NumberTotal>{countPositiveFeedbackPercentage()}%</NumberTotal>
+          <NumberTotal>{positivePercentage}%</NumberTotal>
         </Text>
       </Box>
     </Box>
   );
+};
+
+Statistics.propTypes = {
+  total: PropTypes.number.isRequired,
+  positivePercentage: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  good: PropTypes.number.isRequired,
 };

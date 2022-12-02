@@ -1,41 +1,65 @@
 import PropTypes from 'prop-types';
-import { CiFaceFrown, CiFaceMeh, CiFaceSmile } from 'react-icons/ci';
+import { Component } from 'react';
+
 import { Button, Input } from './FeedbackOptions.styled';
 import { theme } from 'constants';
 import { Box } from 'components/Box';
 
-export const FeedbackOptions = ({ onLeaveFeedback }) => {
-  const handleSubmit = e => {
+export class FeedbackOptions extends Component {
+  state = {
+    feedback: '',
+  };
+
+  handleSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
     const name = form.elements.feedback.value;
-    form.reset();
-    onLeaveFeedback(name);
+    this.setState({ feedback: '' });
+    this.props.onLeaveFeedback(name);
   };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        mb={5}
-        gridGap={5}
-      >
-        <label>
-          <Input type="radio" name="feedback" value="bad"></Input>
-          <CiFaceFrown size={theme.sizes.icon} />
-        </label>
-        <label>
-          <Input type="radio" name="feedback" value="neutral"></Input>
-          <CiFaceMeh size={theme.sizes.icon} />
-        </label>
-        <label>
-          <Input type="radio" name="feedback" value="good"></Input>
-          <CiFaceSmile size={theme.sizes.icon} />
-        </label>
-      </Box>
-      <Button type="submit">Submit</Button>
-    </form>
-  );
+  handleChange = e => {
+    this.setState({ feedback: e.target.value });
+  };
+
+  render() {
+    const { options } = this.props;
+    const { feedback } = this.state;
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          mb={5}
+          gridGap={5}
+        >
+          {Object.entries(options).map(([value, Icon]) => {
+            return (
+              <label key={value}>
+                <Input
+                  type="radio"
+                  name="feedback"
+                  value={value}
+                  onChange={this.handleChange}
+                  checked={value === feedback}
+                />
+                <Icon size={theme.sizes.icon} />
+              </label>
+            );
+          })}
+        </Box>
+        <Button type="submit">Submit</Button>
+      </form>
+    );
+  }
+}
+
+FeedbackOptions.propTypes = {
+  options: PropTypes.shape({
+    bad: PropTypes.func.isRequired,
+    neutral: PropTypes.func.isRequired,
+    good: PropTypes.func.isRequired,
+  }),
+  onLeaveFeedback: PropTypes.func.isRequired,
 };
