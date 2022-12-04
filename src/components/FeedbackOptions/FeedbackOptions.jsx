@@ -9,6 +9,15 @@ export class FeedbackOptions extends Component {
     feedback: '',
   };
 
+  static propTypes = {
+    options: PropTypes.shape({
+      bad: PropTypes.func.isRequired,
+      neutral: PropTypes.func.isRequired,
+      good: PropTypes.func.isRequired,
+    }),
+    onLeaveFeedback: PropTypes.func.isRequired,
+  };
+
   handleSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -53,12 +62,3 @@ export class FeedbackOptions extends Component {
     );
   }
 }
-
-FeedbackOptions.propTypes = {
-  options: PropTypes.shape({
-    bad: PropTypes.func.isRequired,
-    neutral: PropTypes.func.isRequired,
-    good: PropTypes.func.isRequired,
-  }),
-  onLeaveFeedback: PropTypes.func.isRequired,
-};
