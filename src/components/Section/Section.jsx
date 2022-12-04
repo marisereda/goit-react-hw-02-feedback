@@ -13,6 +13,7 @@ export const Section = ({ title, bgColor = 'white', children }) => (
     minWidth="sectionBox"
     bg={bgColor}
     boxShadow="primary"
+    as="section"
   >
     <h2>{title}</h2>
     {children}

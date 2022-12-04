@@ -12,11 +12,6 @@ body{
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
 p {
   margin: 0;
 }
@@ -34,17 +29,6 @@ h6 {
 ul {
   margin: 0;
   padding: 0;
-}
-
-td,
-th,
-tr {
-  vertical-align: center;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
 }
 }
 `;

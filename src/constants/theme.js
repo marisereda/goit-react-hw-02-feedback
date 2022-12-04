@@ -2,22 +2,16 @@ export const theme = {
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
 
   fontSizes: {
-    text: '20px', //1.25rem',
-    numbers: '20px', //1.125rem
+    text: '20px',
+    numbers: '20px',
     button: '18px',
-    label: '14px', //0.875rem
   },
 
   colors: {
     bgPrimary: '#ffffff',
-    bgDark: '#e7ecf2',
     bgLight: '#f3f6f9',
-    bgTableHead: '#00bcd5',
     bgButton: '#00bcd5',
-    bgStatusOnline: 'green',
-    bgStatusOffline: 'red',
 
-    textAccent: '#3c4756',
     textLight: '#b1b9c2',
     textPrimary: 'white',
 
@@ -31,11 +25,6 @@ export const theme = {
     icon: '64px',
 
     sectionBox: '500px',
-    statisticBox: '64px',
-    friendBox: '240px',
-    statusBox: '16px',
-    profileAvatar: '120px',
-    friendListAvatar: '48px',
   },
 
   borders: {
@@ -44,7 +33,6 @@ export const theme = {
 
   radii: {
     primary: '4px',
-    circle: '50%',
   },
 
   shadows: {

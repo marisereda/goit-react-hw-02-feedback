@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import { Component } from 'react';
-
+import { Box } from 'components/Box';
 import { Button, Input } from './FeedbackOptions.styled';
 import { theme } from 'constants';
-import { Box } from 'components/Box';
 
 export class FeedbackOptions extends Component {
   state = {
